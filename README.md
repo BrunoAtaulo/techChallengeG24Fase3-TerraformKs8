@@ -19,7 +19,7 @@ Cesar P Moroni RM355921</br>
 
 A ilustração abaixo representa a arquitetura utilizada, incluindo os microsserviços e suas interações com os bancos de dados e o broker de mensagens.
 
-![image](assets/imagem1.jpeg)
+![image](assets/desenho.jpeg)
 
 
 
