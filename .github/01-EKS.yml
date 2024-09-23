@@ -18,3 +18,4 @@ jobs:
       gh_environment: LR_API_TOKEN
     secrets:
       cli_config_credentials_token: ${{ secrets.LR_API_TOKEN }}
+      
