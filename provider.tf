@@ -18,7 +18,7 @@ terraform {
 
 backend "remote" {
 		hostname = "app.terraform.io"
-		organization = "app"
+		organization = "lancheRapido"
 
 		workspaces {
 			name = "AWSEKS"

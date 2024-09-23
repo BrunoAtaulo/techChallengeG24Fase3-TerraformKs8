@@ -1,6 +1,6 @@
-resource "aws_eks_cluster" "app" {
+resource "aws_eks_cluster" "lancheRapido" {
   name     = var.cluster_name
-  role_arn = aws_iam_role.app.arn
+  role_arn = aws_iam_role.lancheRapido.arn
 
   vpc_config {
     subnet_ids              = var.aws_public_subnet
@@ -11,15 +11,15 @@ resource "aws_eks_cluster" "app" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.app-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.app-AmazonEKSVPCResourceController,
+    aws_iam_role_policy_attachment.lancheRapido-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.lancheRapido-AmazonEKSVPCResourceController,
   ]
 }
 
-resource "aws_eks_node_group" "app" {
-  cluster_name    = aws_eks_cluster.app.name
+resource "aws_eks_node_group" "lancheRapido" {
+  cluster_name    = aws_eks_cluster.lancheRapido.name
   node_group_name = var.node_group_name
-  node_role_arn   = aws_iam_role.app2.arn
+  node_role_arn   = aws_iam_role.lancheRapido2.arn
   subnet_ids      = var.aws_public_subnet
   instance_types  = var.instance_types
 
@@ -35,9 +35,9 @@ resource "aws_eks_node_group" "app" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.app-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.app-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.app-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.lancheRapido-AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.lancheRapido-AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.lancheRapido-AmazonEC2ContainerRegistryReadOnly,
   ]
 }
 
@@ -60,8 +60,8 @@ resource "aws_security_group" "node_group_one" {
   }
 }
 
-resource "aws_iam_role" "app" {
-  name = "eks-cluster-app"
+resource "aws_iam_role" "lancheRapido" {
+  name = "eks-cluster-lancheRapido"
 
   assume_role_policy = <<POLICY
 {
@@ -79,20 +79,20 @@ resource "aws_iam_role" "app" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "app-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "lancheRapido-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.app.name
+  role       = aws_iam_role.lancheRapido.name
 }
 
 # Optionally, enable Security Groups for Pods
 # Reference: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
-resource "aws_iam_role_policy_attachment" "app-AmazonEKSVPCResourceController" {
+resource "aws_iam_role_policy_attachment" "lancheRapido-AmazonEKSVPCResourceController" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
-  role       = aws_iam_role.app.name
+  role       = aws_iam_role.lancheRapido.name
 }
 
-resource "aws_iam_role" "app2" {
-  name = "eks-node-group-app"
+resource "aws_iam_role" "lancheRapido2" {
+  name = "eks-node-group-lancheRapido"
 
   assume_role_policy = jsonencode({
     Statement = [{
@@ -106,17 +106,17 @@ resource "aws_iam_role" "app2" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "app-AmazonEKSWorkerNodePolicy" {
+resource "aws_iam_role_policy_attachment" "lancheRapido-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  role       = aws_iam_role.app2.name
+  role       = aws_iam_role.lancheRapido2.name
 }
 
-resource "aws_iam_role_policy_attachment" "app-AmazonEKS_CNI_Policy" {
+resource "aws_iam_role_policy_attachment" "lancheRapido-AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = aws_iam_role.app2.name
+  role       = aws_iam_role.lancheRapido2.name
 }
 
-resource "aws_iam_role_policy_attachment" "app-AmazonEC2ContainerRegistryReadOnly" {
+resource "aws_iam_role_policy_attachment" "lancheRapido-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = aws_iam_role.app2.name
+  role       = aws_iam_role.lancheRapido2.name
 }
