@@ -21,7 +21,7 @@ backend "remote" {
 		organization = "lancheRapido"
 
 		workspaces {
-			name = "AWSEKS"
+			name = "awseks"
 		}
 	}
 }
@@ -40,7 +40,7 @@ provider "kubernetes" {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "us-east-1"
 }
 
 resource "random_string" "suffix" {
