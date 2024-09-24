@@ -17,9 +17,19 @@ Cesar P Moroni RM355921</br>
 
 .....
 
-A ilustração abaixo representa a arquitetura utilizada, incluindo os microsserviços e suas interações com os bancos de dados e o broker de mensagens.
+## Elastic Kubernetes Service (Amazon EKS)
 
-![image](assets/desenho.jpeg)
+Este repositório é responsável por criar toda a infraestrutura do Kubernetes utilizando o Terraform na nuvem da AWS. O serviço EKS permitirá que a aplicação LancheRapido realize o deploy e fique acessível aos usuários.
+
+Atualizando o EKS
+Sempre que você fizer uma atualização no código, deve criar um pull request da branch em uso para a branch "main". Após realizar o merge, o GitHub Actions cuidará de toda a atualização na AWS.
+
+Requisitos
+Conta na AWS
+Configure as variáveis de acesso da AWS a partir das Credenciais de Segurança:
+
+export AWS_ACCESS_KEY_ID=[seu-id-da-chave]
+export AWS_SECRET_ACCESS_KEY=[sua-chave-secreta]
 
 
 
